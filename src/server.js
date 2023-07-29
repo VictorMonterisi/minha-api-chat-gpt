@@ -6,7 +6,9 @@ const app = express()
 
 app.get('/', async (req,res) => {
     try {
-        const {data} = await create('Quanto é 1 + 1?')
+        const {q} = req.query // Pergunta feita direto na URL
+        if(!q) return res.send('error')
+        const {data} = await create(q)
         const {choices} = data
         res.send(choices[0].text)
     } catch(e) {
