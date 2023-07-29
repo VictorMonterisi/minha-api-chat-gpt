@@ -10,7 +10,7 @@ app.get('/', async (req,res) => {
         if(!q) return res.send('error')
         const {data} = await create(q)
         const {choices} = data
-        res.send(choices[0].text)
+        res.send(choices[0].message)
     } catch(e) {
         console.log(e)
     }

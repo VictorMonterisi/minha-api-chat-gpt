@@ -10,11 +10,9 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-export function create(prompt) {
-    return openai.createCompletion({
-        model: "text-davinci-003",
-        prompt,
-        max_tokens: 7,
-        temperature: 0,
-      });
-}
+export const create = (prompt) => openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [{"role": "system", "content": "Você é um ajudante muito prestativo"}, {role: "user", content: prompt}],
+    max_tokens: 50,
+    temperature: 1,
+  });
